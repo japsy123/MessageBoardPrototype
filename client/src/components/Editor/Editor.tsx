@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 interface IEditorProps {
+    message?: string;
 }
 
 const Editor = (props: IEditorProps): JSX.Element => {
