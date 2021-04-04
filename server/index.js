@@ -4,8 +4,31 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
+const channels = [
+    {
+        id: 1,
+        channelName: 'Mental health',
+        channelContent:[]
+    },
+    {
+        id: 2,
+        channelName: 'Social',
+        channelContent:[]
+    },
+    {
+        id: 3,
+        channelName: 'Random',
+        channelContent:[]
+    }
+]
+
+app.get("/messages/:id", (req,res)=> {
+    res.json(channels[req.params.id]);
+
+});
+
+app.get("/channels", (req, res) => {
+    res.json(channels);
   });
 
 
