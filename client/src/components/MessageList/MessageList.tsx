@@ -16,11 +16,10 @@ const MessageList = (props: IMessageListProps): JSX.Element => {
  const {activeChannel} = props
  const channelsData: any = useSelector((state: rootState) => state.channels)
  const messageList = channelsData[activeChannel as number].content
- console.log(messageList)
  const styles = messageListStyles()
- return <Stack>
-     {messageList && messageList.length >= 1 && messageList.map((message:any, id:number)=> <Text key={id}>{message.message}</Text>)}
-    </Stack>
+ return <>
+     {messageList && messageList.length >= 1 && messageList.map((message:any, id:number)=> <Text styles={styles.messageStyles} key={id}>{message.message}</Text>)}
+     </>
 }
 
 export default MessageList;

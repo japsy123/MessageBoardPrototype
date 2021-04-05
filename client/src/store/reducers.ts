@@ -24,6 +24,7 @@ export default function channelsReducer(state = initialState, action: any) {
             }
         case 'CHANNEL_LOAD_ASYNC':
             return {
+                ...state,
                 channels: action.payload.channels,
                 isLoading: false
             }

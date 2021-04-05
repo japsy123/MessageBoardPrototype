@@ -18,7 +18,8 @@ const MessagePanel = (props: IMessagePanelProps): JSX.Element => {
  return <Stack styles={styles.panelContainer} >
         <MessageList activeChannel={activeChannel}/>
         <Editor currentChannelText={currentChannelText}
-                updateText={updateText} />
+                updateText={updateText}
+                activeChannel={activeChannel} />
      </Stack>
 }
 

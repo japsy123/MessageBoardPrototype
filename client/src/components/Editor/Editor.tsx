@@ -1,15 +1,26 @@
 import React, { Component, useState } from 'react'
 import { Stack } from '@fluentui/react'
 import { editorStyles } from './Editor.styles'
+import { useDispatch, useSelector } from "react-redux";
+
+interface rootState {
+    currentChannel: string,
+     channels: [];
+     isLoading: boolean;
+ }
 
 interface IEditorProps {
     currentChannelText: string;
     updateText: (e:any) => void;
+    activeChannel: number;
 }
 
 const Editor = (props: IEditorProps): JSX.Element => {
 
- const {currentChannelText, updateText} = props
+ const dispatch = useDispatch()
+ const channels: any = useSelector((state: rootState) => state.channels)
+
+ const {currentChannelText, activeChannel, updateText} = props
  const handleOnChange = (e:any) => {
      updateText(e.target.value)
  }
@@ -19,6 +30,8 @@ const Editor = (props: IEditorProps): JSX.Element => {
  }
 
  const handleOnSubmit = () => {
+     const currentChannel = channels[activeChannel].metaName
+    dispatch({type: 'SEND_MESSAGE', payload: {currentChannel: currentChannel, message: currentChannelText}})
     clearInput()
  }
 

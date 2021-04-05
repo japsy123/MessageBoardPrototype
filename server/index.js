@@ -3,6 +3,7 @@ const express = require("express");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(express.json());
 
 const channelEnum = {
     'MentalHealth': 'mentalHealth',
@@ -48,6 +49,12 @@ app.get("/channels", (req, res) => {
     res.json(channels);
   });
 
+app.post('/:channel', (req,res)=> {
+
+    const msg = req.body
+    channelContent[req.params.channel].push(msg)
+    res.send(channelContent)
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
