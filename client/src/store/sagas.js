@@ -1,18 +1,15 @@
-import {takeEvery, put, spawn, call, takeLatest} from 'redux-saga/effects'
+import {takeEvery, put, spawn, call} from 'redux-saga/effects'
 
 export function fetchAllChannels() {
-
      return fetch('/channels').then(res=> res.json())
 };
 
 function fetchChannelMessages(channelName) {
-    console.log(channelName)
     return fetch(`/messages/${channelName}`).then(res=> res.json())
 
 }
 
 function* channelLoadAsync() {
-
     const response = yield call(fetchAllChannels)
     yield put({type: 'CHANNEL_LOAD_ASYNC', payload: {
         channels: response,
@@ -22,13 +19,11 @@ function* channelLoadAsync() {
 
 function* channelMessageLoadAsync(action) {
     const response = yield call(fetchChannelMessages,action.payload)
-    console.log(response)
     yield put({type: 'CHANNEL_MESSAGE_ASYNC', payload: {
         channelContent: response,
         channelName: action.payload
     }})
 }
-
 
 export function* watchChannelLoadAsync() {
     yield takeEvery("CHANNEL_LOAD", channelLoadAsync)

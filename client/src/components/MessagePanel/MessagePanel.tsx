@@ -5,22 +5,16 @@ import MessageList from '../MessageList/MessageList'
 import {messagePanelStyles} from './MessagePanel.styles'
 
 interface IMessagePanelProps {
-    channelList?: []
+    activeChannel?: number
 }
 
 const MessagePanel = (props: IMessagePanelProps): JSX.Element => {
 
-
+ const {activeChannel} = props
  const styles = messagePanelStyles();
 
- useEffect(()=> {
-
- },[])
-
-
-
  return <Stack styles={styles.panelContainer} >
-        <MessageList/>
+        <MessageList activeChannel={activeChannel}/>
         <Editor/>
      </Stack>
 }

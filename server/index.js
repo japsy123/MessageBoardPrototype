@@ -32,9 +32,11 @@ const channels = [
 ]
 
 const channelContent = {
-    'mentalHealth': [{ creatorId: '', message: ''}],
-    'social': [{ creatorId: '', message: ''}],
-    'random': [{ creatorId: '', message: ''}]
+    'mentalHealth': [{ creatorId: '112', message: 'Hello I like this group'}],
+    'social': [{ creatorId: '122', message: 'Any plans for tonight, guy???'}],
+    'random': [{ creatorId: '156', message: 'Checkout this new game'},
+    { creatorId: '156', message: 'Checkout this new game'},
+    { creatorId: '156', message: 'Checkout this new game'}]
 }
 
 app.get("/messages/:channel", (req,res)=> {
