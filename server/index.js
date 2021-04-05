@@ -4,26 +4,41 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+const channelEnum = {
+    'MentalHealth': 'mentalHealth',
+    'Social': 'social',
+    'Random': 'random'
+}
+
 const channels = [
     {
         id: 1,
-        channelName: 'Mental health',
-        channelContent:[]
+        channelName: 'Mental Health',
+        metaName: channelEnum.MentalHealth,
+        content: []
     },
     {
         id: 2,
         channelName: 'Social',
-        channelContent:[]
+        metaName: channelEnum.social,
+        content: []
     },
     {
         id: 3,
         channelName: 'Random',
-        channelContent:[]
+        metaName: channelEnum.random,
+        content: []
     }
 ]
 
-app.get("/messages/:id", (req,res)=> {
-    res.json(channels[req.params.id]);
+const channelContent = {
+    'mentalHealth': [{ creatorId: '', message: ''}],
+    'social': [{ creatorId: '', message: ''}],
+    'random': [{ creatorId: '', message: ''}]
+}
+
+app.get("/messages/:channel", (req,res)=> {
+    res.json(channelContent[req.params.channel]);
 
 });
 

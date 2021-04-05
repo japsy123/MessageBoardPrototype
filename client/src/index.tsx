@@ -4,9 +4,7 @@ import './index.css';
 import Dashboard from './components/Dashboard/Dashboard';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Dashboard />
-  </React.StrictMode>,
+    <Dashboard/>,
   document.getElementById('root')
 );
 

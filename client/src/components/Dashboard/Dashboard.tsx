@@ -1,45 +1,38 @@
 import { Stack } from '@fluentui/react'
 import React, { useState, useEffect } from 'react'
-import Editor from '../Editor/Editor'
-import MessageList from '../MessageList/MessageList'
 import MessagePanel from '../MessagePanel/MessagePanel'
 import {dashboardStyles} from './Dashboard.styles'
+import { useDispatch, useSelector } from "react-redux";
 
+interface rootState {
+    channels: [];
+    isLoading: boolean;
+}
 interface IDashboardProps {
     channelList?: []
 }
 
 const Dashboard = (props: IDashboardProps): JSX.Element => {
 
- const [channels, setChannels] = useState([]);
+ const dispatch = useDispatch()
  const [homeScreen, setHomeScreen] = useState(true)
  const [activeChannel, setActiveChannel] = useState<any>(null)
  const styles = dashboardStyles();
-
+ const channelsData = useSelector((state: rootState) => state.channels)
  useEffect(()=> {
-    async function getChannels(){
-        const response = await fetch('/channels');
+    dispatch({type :"CHANNEL_LOAD"})
+ },[dispatch])
 
-        const channels = await response.json()
-        setChannels(channels)
-    }
-    getChannels()
- },[])
-
- function onChannelLink(eventObj: any, channelId: number) {
+ function onChannelLink(eventObj: any, channelId: number, channelName: string) {
     setHomeScreen(false);
-    async function getChannelContent() {
-        const response = await fetch(`/messages/${channelId}`)
-        console.log(response)
-    }
-    getChannelContent()
+    dispatch({type: 'CHANNEL_MESSAGE_LOAD', payload: channelName})
     setActiveChannel(channelId)
  }
 
  return <Stack styles={styles.dashboardContainer} horizontal >
         <Stack styles={styles.channels} >
-           {channels.length && channels.map((channel: any,id) => {
-               return <button onClick={(e)=> onChannelLink(e,id)}
+           {channelsData.length && channelsData.map((channel: any,id: any) => {
+               return <button onClick={(e)=> onChannelLink(e,id, channel.metaName)}
                className={id === activeChannel ? 'selected' : ''} key={id}>{channel.channelName}</button>
            })}
          </Stack>
