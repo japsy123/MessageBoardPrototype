@@ -4,7 +4,6 @@ import { editorStyles } from './Editor.styles'
 import { useDispatch, useSelector } from "react-redux";
 
 interface rootState {
-    currentChannel: string,
      channels: [];
      isLoading: boolean;
  }
@@ -31,7 +30,7 @@ const Editor = (props: IEditorProps): JSX.Element => {
 
  const handleOnSubmit = () => {
      const currentChannel = channels[activeChannel].metaName
-    dispatch({type: 'SEND_MESSAGE', payload: {currentChannel: currentChannel, message: currentChannelText}})
+    dispatch({type: 'SEND_MESSAGE', payload: {channelName: currentChannel, message: currentChannelText}})
     clearInput()
  }
 

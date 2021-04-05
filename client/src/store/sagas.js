@@ -20,6 +20,7 @@ function sendChannelMessage(channelData) {
         body: JSON.stringify({message: channelData.message})
     }).then(res => res.json())
 }
+
 function* channelLoadAsync() {
     const response = yield call(fetchAllChannels)
     yield put({type: 'CHANNEL_LOAD_ASYNC', payload: {
@@ -37,10 +38,10 @@ function* channelMessageLoadAsync(action) {
 }
 
 function* channelMessageSentAsync(action) {
-    const response = yield call(fetchChannelMessages,action.payload)
-    yield put({type: 'CHANNEL_MESSAGE_ASYNC', payload: {
-        channelContent: response,
-        channelName: action.payload
+    const response = yield call(sendChannelMessage,action.payload)
+    yield put({type: 'SEND_MESSAGE_ASYNC', payload: {
+        message: response,
+        channelName: action.payload.channelName
     }})
 }
 

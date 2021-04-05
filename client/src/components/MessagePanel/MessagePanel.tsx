@@ -19,7 +19,8 @@ const MessagePanel = (props: IMessagePanelProps): JSX.Element => {
         <MessageList activeChannel={activeChannel}/>
         <Editor currentChannelText={currentChannelText}
                 updateText={updateText}
-                activeChannel={activeChannel} />
+                activeChannel={activeChannel}
+                />
      </Stack>
 }
 

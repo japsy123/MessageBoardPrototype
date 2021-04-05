@@ -1,21 +1,20 @@
 import { act } from "react-dom/test-utils";
 
-const channelsData = []
-
 const initialState = {
     channels: [],
     isLoading: true
 }
 export default function channelsReducer(state = initialState, action: any) {
     switch(action.type) {
-        case 'SEND_MESSAGE':
+        case 'SEND_MESSAGE_ASYNC':
             return {
+                ...state,
                 channels: state.channels.map((channel:any) => {
-                    if(channel.id === action.payload.channelID) {
+                    if(channel.metaName === action.payload.channelName) {
                         return {
                             ...channel,
-                            channelContent: {
-                                messages: [...channel.channelContent.messages, action.payload]
+                            content: {
+                                messages: [...action.payload.message]
                             }
                         }
                     }

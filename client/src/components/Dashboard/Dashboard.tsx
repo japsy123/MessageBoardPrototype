@@ -5,7 +5,6 @@ import {dashboardStyles} from './Dashboard.styles'
 import { useDispatch, useSelector } from "react-redux";
 
 interface rootState {
-   currentChannel: string,
     channels: [];
     isLoading: boolean;
 }
@@ -21,7 +20,7 @@ const Dashboard = (): JSX.Element => {
  useEffect(()=> {
     dispatch({type :"CHANNEL_LOAD"})
  },[dispatch])
-//TODO: need global state for active channel
+
  function onChannelLink(eventObj: any, channelId: number, channelName: string) {
     setHomeScreen(false);
     dispatch({type: 'CHANNEL_MESSAGE_LOAD', payload: channelName})
@@ -41,7 +40,8 @@ const Dashboard = (): JSX.Element => {
            })}
          </Stack>
          <div style={{width:'100%', backgroundColor:'#e1dfdd', display: 'flex', alignItems: 'flex-end', justifyContent:'flex-start'}}>
-            {!homeScreen ? <MessagePanel
+            {!homeScreen ?
+            <MessagePanel
             activeChannel={activeChannel}
             currentChannelText={currentChannelText}
             updateText={onUpdateText}

@@ -33,11 +33,11 @@ const channels = [
 ]
 
 const channelContent = {
-    'mentalHealth': [{ creatorId: '112', message: 'Hello I like this group'}],
-    'social': [{ creatorId: '122', message: 'Any plans for tonight, guy???'}],
-    'random': [{ creatorId: '156', message: 'Checkout this new game'},
-    { creatorId: '156', message: 'Checkout this new game'},
-    { creatorId: '156', message: 'Checkout this new game'}]
+    'mentalHealth': [{ message: 'Hello I like this group'}],
+    'social': [{ message: 'Any plans for tonight, guy???'}],
+    'random': [{ message: 'Checkout this new game'},
+    { message: 'Checkout this new game'},
+    { message: 'Checkout this new game'}]
 }
 
 app.get("/messages/:channel", (req,res)=> {
@@ -50,10 +50,9 @@ app.get("/channels", (req, res) => {
   });
 
 app.post('/:channel', (req,res)=> {
-
     const msg = req.body
     channelContent[req.params.channel].push(msg)
-    res.send(channelContent)
+    res.send(channelContent[req.params.channel])
 })
 
 app.listen(PORT, () => {
