@@ -13,6 +13,7 @@ const Dashboard = (): JSX.Element => {
 
  const dispatch = useDispatch()
  const [homeScreen, setHomeScreen] = useState(true)
+ const [currentChannelText, setCurrentChannelText] = useState('')
  const [activeChannel, setActiveChannel] = useState<any>(null)
  const styles = dashboardStyles();
  const channelsData: any = useSelector((state: rootState) => state.channels)
@@ -24,6 +25,11 @@ const Dashboard = (): JSX.Element => {
     setHomeScreen(false);
     dispatch({type: 'CHANNEL_MESSAGE_LOAD', payload: channelName})
     setActiveChannel(channelId)
+    setCurrentChannelText('')
+ }
+
+ function onUpdateText(value: string) {
+   setCurrentChannelText(value)
  }
 
  return <Stack styles={styles.dashboardContainer} horizontal >
@@ -34,8 +40,12 @@ const Dashboard = (): JSX.Element => {
            })}
          </Stack>
          <div style={{width:'100%', backgroundColor:'#e1dfdd', display: 'flex', alignItems: 'flex-end', justifyContent:'flex-start'}}>
-            {!homeScreen ? <MessagePanel activeChannel={activeChannel}/> :
-            <Stack>Welcome</Stack>}
+            {!homeScreen ? <MessagePanel
+            activeChannel={activeChannel}
+            currentChannelText={currentChannelText}
+            updateText={onUpdateText}
+            /> :
+            <Stack styles={styles.welcome}>Welcome to Message board. This is a prototype</Stack>}
         </div>
      </Stack>
 }

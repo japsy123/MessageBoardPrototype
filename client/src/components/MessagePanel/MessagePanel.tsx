@@ -5,17 +5,20 @@ import MessageList from '../MessageList/MessageList'
 import {messagePanelStyles} from './MessagePanel.styles'
 
 interface IMessagePanelProps {
-    activeChannel?: number
+    activeChannel: number;
+    currentChannelText: string;
+    updateText: (e:any) => void;
 }
 
 const MessagePanel = (props: IMessagePanelProps): JSX.Element => {
 
- const {activeChannel} = props
+ const {activeChannel, currentChannelText, updateText} = props
  const styles = messagePanelStyles();
 
  return <Stack styles={styles.panelContainer} >
         <MessageList activeChannel={activeChannel}/>
-        <Editor/>
+        <Editor currentChannelText={currentChannelText}
+                updateText={updateText} />
      </Stack>
 }
 

@@ -5,6 +5,7 @@ export interface IDashboardStyles {
     channels: IStackStyles;
     channelLinks: IStyle;
     buttonStyles: IButtonStyles;
+    welcome: IStackStyles;
 }
 
 
@@ -41,6 +42,15 @@ export interface IDashboardStyles {
          buttonStyles: {
              root: {
                  backgroundColor: 'red'
+             }
+         },
+         welcome: {
+             root: {
+                 width: '100%',
+                 height: '100%',
+                 justifyContent: 'center',
+                 alignItems: 'center',
+                 fontSize: '45px'
              }
          }
     }
