@@ -21,7 +21,3 @@
 ## Usage
 
 Go to localhost at port 3000 and see the app in action
-
-## Open Issues
-
-While sending the message the MessageList panel clears and the messages are displayed when you click on that channel again.
