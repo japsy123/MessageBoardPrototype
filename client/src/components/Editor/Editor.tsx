@@ -30,7 +30,10 @@ const Editor = (props: IEditorProps): JSX.Element => {
 
  const handleOnSubmit = () => {
      const currentChannel = channels[activeChannel].metaName
+     console.log('dispatching')
     dispatch({type: 'SEND_MESSAGE', payload: {channelName: currentChannel, message: currentChannelText}})
+    console.log('afterr')
+
     clearInput()
  }
 

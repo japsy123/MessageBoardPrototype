@@ -13,9 +13,7 @@ export default function channelsReducer(state = initialState, action: any) {
                     if(channel.metaName === action.payload.channelName) {
                         return {
                             ...channel,
-                            content: {
-                                messages: [...action.payload.message]
-                            }
+                            content: [...channel.content, ...action.payload.message]
                         }
                     }
                     return channel;
