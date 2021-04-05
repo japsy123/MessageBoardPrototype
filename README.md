@@ -7,11 +7,21 @@
    ```sh
    npm install
    ```
-3. Open the terminal for the server and run npm start
-4. Open the terminal for client and run npm start
+3. Cd into client and install the packages for it
+
+```sh
+  npm install
+```
+
+4. Open the terminal for the server and run npm start
+5. Open the terminal for client and run npm start
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
 Go to localhost at port 3000 and see the app in action
+
+## Open Issues
+
+While sending the message the MessageList panel clears and the messages are displayed when you click on that channel again.
