@@ -20,13 +20,13 @@ const channels = [
     {
         id: 2,
         channelName: 'Social',
-        metaName: channelEnum.social,
+        metaName: channelEnum.Social,
         content: []
     },
     {
         id: 3,
         channelName: 'Random',
-        metaName: channelEnum.random,
+        metaName: channelEnum.Random,
         content: []
     }
 ]

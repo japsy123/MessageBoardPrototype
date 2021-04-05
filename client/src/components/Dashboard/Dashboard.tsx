@@ -25,6 +25,7 @@ const Dashboard = (props: IDashboardProps): JSX.Element => {
 
  function onChannelLink(eventObj: any, channelId: number, channelName: string) {
     setHomeScreen(false);
+    console.log(channelName)
     dispatch({type: 'CHANNEL_MESSAGE_LOAD', payload: channelName})
     setActiveChannel(channelId)
  }

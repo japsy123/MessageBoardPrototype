@@ -3,11 +3,10 @@ import {takeEvery, put, spawn, call, takeLatest} from 'redux-saga/effects'
 export function fetchAllChannels() {
 
      return fetch('/channels').then(res=> res.json())
-  };
-
-
+};
 
 function fetchChannelMessages(channelName) {
+    console.log(channelName)
     return fetch(`/messages/${channelName}`).then(res=> res.json())
 
 }
@@ -36,7 +35,7 @@ export function* watchChannelLoadAsync() {
 }
 
 export function* watchChannelMessageLoadAsync() {
-    yield takeLatest("CHANNEL_MESSAGE_LOAD", channelMessageLoadAsync)
+    yield takeEvery("CHANNEL_MESSAGE_LOAD", channelMessageLoadAsync)
 }
 
 export default function* rootSaga() {
